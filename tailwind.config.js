@@ -10,11 +10,11 @@ export default {
         'josefin-sans': ['Josefin Sans', 'sans-serif'],
       },
       backgroundImage: {
-        'light-mode-mobile': "url('images/bg-mobile-light.jpg')",
-        'dark-mode-mobile': "url('images/bg-mobile-dark.jpg')",
-        'light-mode-desktop': "url('images/bg-desktop-light.jpg')",
-        'dark-mode-desktop': "url('images/bg-desktop-dark.jpg')",
-      }
+        'light-mode-mobile': "url('/images/bg-mobile-light.jpg')",
+        'dark-mode-mobile': "url('/images/bg-mobile-dark.jpg')",
+        'light-mode-desktop': "url('/images/bg-desktop-light.jpg')",
+        'dark-mode-desktop': "url('/images/bg-desktop-dark.jpg')",
+      },
     },
   },
   plugins: [],
