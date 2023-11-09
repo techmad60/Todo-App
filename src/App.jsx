@@ -13,11 +13,11 @@ function App() {
 
   return (
     <div className={
-      `min-h-screen max-w-full bg-no-repeat
-      ${isDarkMode ? 'bg-slate-900 bg-dark-mode-mobile lg:bg-dark-mode-desktop' : 'bg-slate-200 bg-light-mode-mobile lg:bg-light-mode-desktop'}`
+      `min-h-screen max-w-full bg-no-repeat bg-contain
+      ${isDarkMode ? 'bg-slate-900 bg-dark-mode-mobile sm:bg-dark-mode-desktop' : 'bg-slate-200 bg-light-mode-mobile sm:bg-light-mode-desktop'}`
       }>
       <div 
-        className={`App md:p-32 lg:p-0 grid lg:max-w-xl lg:mx-auto  `}>
+        className={`App md:px-32 lg:p-0 grid lg:max-w-xl lg:mx-auto  `}>
         <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
         <Content isDarkMode={isDarkMode} />
         <Footer />

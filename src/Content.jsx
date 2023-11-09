@@ -2,7 +2,7 @@ import React from 'react'
 
 const Content = ({ isDarkMode }) => {
   return (
-    <main className="mx-5 md:mt-40 lg:mt-0">
+    <main className="mx-5 md:mt-2 lg:mt-0">
         <section className={`flex justify-between p-5  rounded-t-md border-t-white border-b-2
          ${isDarkMode ? 'bg-slate-800 border-b-slate-400' : 'bg-white'}`}>
           <p className={`border-2 rounded-full w-5 h-5  
@@ -28,7 +28,7 @@ const Content = ({ isDarkMode }) => {
             <p>Completed</p>
           </section>
         </div>
-        <div className="lg:flex justify-between hidden  bg-white dark:bg-slate-800 text-slate-400 p-5 rounded-b-md">
+        <div className={`lg:flex justify-between hidden text-slate-400 p-5 rounded-b-md ${isDarkMode ? 'bg-slate-800' : 'bg-white'}`}>
           <div className="">5 items left</div>
           <section className="flex justify-center space-x-5 rounded-md  font-semibold">
             <p>All</p>
