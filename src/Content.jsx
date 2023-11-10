@@ -1,15 +1,10 @@
 import React from 'react'
+import List from './List'
 
-const Content = ({ isDarkMode }) => {
+const Content = ({ isDarkMode, todos, deleteTodo }) => {
   return (
-    <main className="mx-5 md:mt-2 lg:mt-0">
-        <section className={`flex justify-between p-5  rounded-t-md border-t-white border-b-2
-         ${isDarkMode ? 'bg-slate-800 border-b-slate-400' : 'bg-white'}`}>
-          <p className={`border-2 rounded-full w-5 h-5  
-          ${isDarkMode ? 'border-gray-600' : ''}`}>
-          </p>
-          <img src="images/icon-cross.svg" alt="" className=""/>
-        </section>
+      <main className="mx-5 md:mt-2 lg:mt-0">
+        <List todos={todos} deleteTodo={deleteTodo} isDarkMode={isDarkMode} />
         <div className="lg:hidden">
           <section className={
           `flex justify-between p-5 text-slate-400 text-sm

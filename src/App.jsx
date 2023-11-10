@@ -6,6 +6,7 @@ import Footer from './Footer';
 function App() {
   // Set isDarkMode based on user preference (true for dark theme, false for light theme)
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [todos, setTodos] = useState([]);
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -18,8 +19,8 @@ function App() {
       }>
       <div 
         className={`App md:px-32 lg:p-0 grid lg:max-w-xl lg:mx-auto  `}>
-        <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-        <Content isDarkMode={isDarkMode} />
+         <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} todos={todos} setTodos={setTodos} />
+        <Content isDarkMode={isDarkMode} todos={todos}/>
         <Footer />
       </div>
     </div>
@@ -27,4 +28,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

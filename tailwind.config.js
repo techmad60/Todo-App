@@ -15,6 +15,9 @@ export default {
         'light-mode-desktop': "url('/images/bg-desktop-light.jpg')",
         'dark-mode-desktop': "url('/images/bg-desktop-dark.jpg')",
       },
+      letterSpacing: {
+        widest: "0.5em",
+      },
     },
   },
   plugins: [],
