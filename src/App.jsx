@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import Content from './Content';
 import Footer from './Footer';
@@ -6,7 +6,15 @@ import Footer from './Footer';
 function App() {
   // Set isDarkMode based on user preference (true for dark theme, false for light theme)
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [todos, setTodos] = useState([]);
+  
+   // Load todos from local storage when the app initializes
+   const initialTodos = JSON.parse(localStorage.getItem('todos')) || [];
+  const [todos, setTodos] = useState(initialTodos);
+
+  // Save todos to local storage whenever the todos state changes
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
