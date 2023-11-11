@@ -20,6 +20,11 @@ function App() {
     setIsDarkMode(!isDarkMode);
   };
 
+  const deleteTodo = (id) => {
+    const updatedTodos = todos.filter(todo => todo.id !== id);
+    setTodos(updatedTodos);
+  };
+
   return (
     <div className={
       `min-h-screen max-w-full bg-no-repeat bg-contain
@@ -28,7 +33,7 @@ function App() {
       <div 
         className={`App md:px-32 lg:p-0 grid lg:max-w-xl lg:mx-auto  `}>
          <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} todos={todos} setTodos={setTodos} />
-        <Content isDarkMode={isDarkMode} todos={todos}/>
+        <Content isDarkMode={isDarkMode} deleteTodo={deleteTodo} todos={todos}/>
         <Footer />
       </div>
     </div>
