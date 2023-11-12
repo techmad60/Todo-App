@@ -10,7 +10,7 @@ const Content = ({ isDarkMode, todos, deleteTodo }) => {
           `flex justify-between p-5 text-slate-400 text-sm
           ${isDarkMode ? 'bg-slate-800' : ' bg-white'}`
           }>
-            <p className="">5 items left</p>
+            <p className=""><span id='mobile-item'>5</span> items left</p>
             <p>Clear Completed</p>
           </section>
           
