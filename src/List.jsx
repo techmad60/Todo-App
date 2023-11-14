@@ -1,27 +1,20 @@
 import React, { useState } from 'react';
 
-const List = ({ isDarkMode, todos, deleteTodo }) => {
-  const [completedTasks, setCompletedTasks] = useState([]);
-
-  const handleTaskClick = (id) => {
-    if (completedTasks.includes(id)) {
-      setCompletedTasks(completedTasks.filter(taskId => taskId !== id));
-    } else {
-      setCompletedTasks([...completedTasks, id]);
-    }
-  };
+const List = ({ isDarkMode, todos, deleteTodo, handleTaskCompletion, completedTasks }) => {
+  
 
   const handleDelete = (id) => {
     deleteTodo(id);
-    setCompletedTasks(completedTasks.filter(taskId => taskId !== id));
+    handleTaskCompletion(id); // Signal completion to the App component
   };
+
 
   return (
     <ul className={`rounded-t-md ${isDarkMode ? 'bg-slate-800' : 'bg-white'}`}>
       {todos.map((todo) => (
         <li key={todo.id} className={`flex items-start p-5 border-b-2 ${isDarkMode ? 'border-slate-400' : 'border-slate-200'}`}>
           <div
-            onClick={() => handleTaskClick(todo.id)}
+            onClick={() => handleTaskCompletion(todo.id)}
             className={`border-2 bg-no-repeat bg-center rounded-full w-5 h-5 flex items-center justify-center ${isDarkMode ? 'border-gray-600' : ''} ${completedTasks.includes(todo.id) ? 'bg-custom-gradient' : ''}`}
             id={`Completed-Todo-${todo.id}`}
           >

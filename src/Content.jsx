@@ -1,27 +1,21 @@
 import React from 'react'
 import List from './List'
+import MobileItem from './MobileItem'
+import MobileFilter from './MobileFilter'
 
-const Content = ({ isDarkMode, todos, deleteTodo }) => {
+const Content = ({ isDarkMode, todos, deleteTodo, setTodos, handleTaskCompletion, completedTasks }) => {
+  
+  const clearCompletedTodos = () => {
+    const updatedTodos = todos.filter(todo => !completedTasks.includes(todo.id));
+    setTodos(updatedTodos);
+  };
+  
   return (
       <main className="mx-5 md:mt-2 lg:mt-0">
-        <List todos={todos} deleteTodo={deleteTodo} isDarkMode={isDarkMode} />
+        <List todos={todos} deleteTodo={deleteTodo} isDarkMode={isDarkMode} handleTaskCompletion={handleTaskCompletion} completedTasks={completedTasks}/>
         <div className="lg:hidden">
-          <section className={
-          `flex justify-between p-5 text-slate-400 text-sm
-          ${isDarkMode ? 'bg-slate-800' : ' bg-white'}`
-          }>
-            <p className=""><span id='mobile-item'>5</span> items left</p>
-            <p>Clear Completed</p>
-          </section>
-          
-          <section className={
-            `flex justify-center space-x-5 mt-4 p-4 rounded-md text-slate-400 font-semibold
-            ${isDarkMode ? 'bg-slate-800' : 'bg-white'}`
-          }>
-            <p>All</p>
-            <p>Active </p>
-            <p>Completed</p>
-          </section>
+          <MobileItem isDarkMode={isDarkMode} totalTodosCount={todos.length} clearCompletedTodos={clearCompletedTodos}/>
+          <MobileFilter isDarkMode={isDarkMode} />
         </div>
         <div className={`lg:flex justify-between hidden text-slate-400 p-5 rounded-b-md ${isDarkMode ? 'bg-slate-800' : 'bg-white'}`}>
           <div className="">5 items left</div>

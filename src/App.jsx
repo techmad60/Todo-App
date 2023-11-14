@@ -4,17 +4,30 @@ import Content from './Content';
 import Footer from './Footer';
 
 function App() {
-  // Set isDarkMode based on user preference (true for dark theme, false for light theme)
-  const [isDarkMode, setIsDarkMode] = useState(true);
-  
-   // Load todos from local storage when the app initializes
-   const initialTodos = JSON.parse(localStorage.getItem('todos')) || [];
+  // Set isDarkMode based on user preference (true for dark theme, false for light theme)const [isDarkMode, setIsDarkMode] = useState(true);
+  const initialTodos = JSON.parse(localStorage.getItem('todos')) || [];
   const [todos, setTodos] = useState(initialTodos);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // Save todos to local storage whenever the todos state changes
+  const handleTaskCompletion = (id) => {
+    // Logic to manage completion status in the App component
+    const updatedCompletedTasks = completedTasks.includes(id)
+      ? completedTasks.filter((taskId) => taskId !== id)
+      : [...completedTasks, id];
+    setCompletedTasks(updatedCompletedTasks);
+  };
+
+  
+  // Load completed tasks from local storage when the app initializes
+  const initialCompletedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
+  const [completedTasks, setCompletedTasks] = useState(initialCompletedTasks);
+
+  // Save todos and completed tasks to local storage
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
+    localStorage.setItem('completedTasks', JSON.stringify(completedTasks)); 
+    // Save completed tasks
+  }, [todos, completedTasks]); // Listen for changes in both todos and completedTasks
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -33,7 +46,7 @@ function App() {
       <div 
         className={`App md:px-32 lg:p-0 grid lg:max-w-xl lg:mx-auto  `}>
          <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} todos={todos} setTodos={setTodos} />
-        <Content isDarkMode={isDarkMode} deleteTodo={deleteTodo} todos={todos}/>
+        <Content isDarkMode={isDarkMode} deleteTodo={deleteTodo} todos={todos}  setTodos={setTodos} handleTaskCompletion={handleTaskCompletion} completedTasks={completedTasks}/>
         <Footer />
       </div>
     </div>
