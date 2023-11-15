@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react';
 import List from './List'
 import MobileItem from './MobileItem'
-import MobileFilter from './MobileFilter'
+import DesktopItem from './DesktopItem';
 
 const Content = ({ isDarkMode, todos, deleteTodo, setTodos, handleTaskCompletion, completedTasks }) => {
+
+  const [filter, setFilter] = useState('All'); 
+
+  const filteredTodos = () => {
+    switch (filter) {
+      case 'Active':
+        return todos.filter(todo => !completedTasks.includes(todo.id));
+      case 'Completed':
+        return todos.filter(todo => completedTasks.includes(todo.id));
+      default:
+        return todos;
+    }
+  };
   
   const clearCompletedTodos = () => {
     const updatedTodos = todos.filter(todo => !completedTasks.includes(todo.id));
@@ -11,22 +24,18 @@ const Content = ({ isDarkMode, todos, deleteTodo, setTodos, handleTaskCompletion
   };
   
   return (
-      <main className="mx-5 md:mt-2 lg:mt-0">
-        <List todos={todos} deleteTodo={deleteTodo} isDarkMode={isDarkMode} handleTaskCompletion={handleTaskCompletion} completedTasks={completedTasks}/>
-        <div className="lg:hidden">
-          <MobileItem isDarkMode={isDarkMode} totalTodosCount={todos.length} clearCompletedTodos={clearCompletedTodos}/>
-          <MobileFilter isDarkMode={isDarkMode} />
-        </div>
-        <div className={`lg:flex justify-between hidden text-slate-400 p-5 rounded-b-md ${isDarkMode ? 'bg-slate-800' : 'bg-white'}`}>
-          <div className="">5 items left</div>
-          <section className="flex justify-center space-x-5 rounded-md  font-semibold">
-            <p>All</p>
-            <p>Active </p>
-            <p>Completed</p>
-          </section>
-          <div className="">Clear Completed</div>
-        </div>
-      </main>
+    <main className="mx-5 md:mt-2 lg:mt-0">
+      <List todos={filteredTodos()} deleteTodo={deleteTodo} isDarkMode={isDarkMode} handleTaskCompletion={handleTaskCompletion} completedTasks={completedTasks}/>
+      
+      <MobileItem isDarkMode={isDarkMode} totalTodosCount={todos.length} clearCompletedTodos={clearCompletedTodos} setFilter={setFilter}/>
+       
+      <DesktopItem isDarkMode={isDarkMode} totalTodosCount={todos.length} clearCompletedTodos={clearCompletedTodos} setFilter={setFilter} />
+
+      <div className="mt-5 lg:mt-8 flex justify-center">
+       <button className="text-center text-slate-400" >Drag and drop files to reorder list</button>
+      </div>
+
+    </main>
 
   )
 }
