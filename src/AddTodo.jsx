@@ -16,8 +16,12 @@ const AddTodo = ({ isDarkMode, todos, setTodos }) => {
       };
       setTodos([...todos, newTodo]);
       setTodoText('');
+
+      console.log('New Todo ID:', newTodo.id);
     }
+   
   };
+  
 
   const handleClick = () => {
     handleAddTodo();
@@ -25,7 +29,12 @@ const AddTodo = ({ isDarkMode, todos, setTodos }) => {
 
   return (
     <section className={`flex items-center m-5 ${isDarkMode ? 'bg-slate-800' : 'bg-white'} rounded-md px-5`}>
-      <button className={`border-2 rounded-full w-5 h-5 ${isDarkMode ? 'border-gray-600' : ''}`} onClick={handleClick}></button>
+      <button
+        className={`border-2 rounded-full w-5 h-5 ${isDarkMode ? 'border-gray-600' : ''}`}
+        onClick={handleClick}
+        aria-label="Add Todo"
+      >
+      </button>
       <input
         type="text"
         value={todoText}
@@ -37,4 +46,4 @@ const AddTodo = ({ isDarkMode, todos, setTodos }) => {
   );
 };
 
-export default AddTodo
+export default AddTodo;

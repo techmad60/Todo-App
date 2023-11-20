@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Droppable } from 'react-beautiful-dnd';
 import List from './List'
 import MobileItem from './MobileItem'
 import DesktopItem from './DesktopItem';
@@ -22,10 +23,28 @@ const Content = ({ isDarkMode, todos, deleteTodo, setTodos, handleTaskCompletion
     const updatedTodos = todos.filter(todo => !completedTasks.includes(todo.id));
     setTodos(updatedTodos);
   };
+
   
   return (
     <main className="mx-5 md:mt-2 lg:mt-0">
-      <List todos={filteredTodos()} deleteTodo={deleteTodo} isDarkMode={isDarkMode} handleTaskCompletion={handleTaskCompletion} completedTasks={completedTasks}/>
+      
+      <Droppable droppableId="todo-list">
+        {(provided) => (
+          <div
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
+            <List
+              todos={filteredTodos()}
+              deleteTodo={deleteTodo}
+              isDarkMode={isDarkMode}
+              handleTaskCompletion={handleTaskCompletion}
+              completedTasks={completedTasks}
+            />
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
       
       <MobileItem isDarkMode={isDarkMode} totalTodosCount={todos.length} clearCompletedTodos={clearCompletedTodos} setFilter={setFilter}/>
        

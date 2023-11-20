@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Kumbh+Sans:wght@400;700&display=swap');
+.active-filter {
+    color:#3182CE
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
