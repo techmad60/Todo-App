@@ -19,19 +19,19 @@ const AddTodo = ({ isDarkMode, todos, setTodos }) => {
 
       console.log('New Todo ID:', newTodo.id);
     }
-   
   };
-  
 
-  const handleClick = () => {
-    handleAddTodo();
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleAddTodo();
+    }
   };
 
   return (
     <section className={`flex items-center m-5 ${isDarkMode ? 'bg-slate-800' : 'bg-white'} rounded-md px-5`}>
       <button
         className={`border-2 rounded-full w-5 h-5 ${isDarkMode ? 'border-gray-600' : ''}`}
-        onClick={handleClick}
+        onClick={handleAddTodo}
         aria-label="Add Todo"
       >
       </button>
@@ -39,6 +39,7 @@ const AddTodo = ({ isDarkMode, todos, setTodos }) => {
         type="text"
         value={todoText}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
         placeholder="Create a new todo..."
         className={`placeholder:text-slate-400 w-full p-3 text-slate-400 ${isDarkMode ? 'bg-slate-800' : ''}`}
       />
